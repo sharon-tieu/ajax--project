@@ -66,6 +66,10 @@ p:hover {
   cursor: pointer;
 }
 
+h4:hover {
+  cursor: pointer;
+}
+
 /* SITE IMAGES */
 .img-icon {
   width: 75px;
@@ -95,6 +99,14 @@ p:hover {
 
 .padding-top-10 {
   padding-top: 10px;
+}
+
+.padding-top-20 {
+  padding-top: 20px;
+}
+
+.padding-top-50 {
+  padding-top: 50px;
 }
 
 .padding-bottom-20 {
@@ -149,4 +161,43 @@ p:hover {
 
 .text-align-right {
   text-align: right;
+}
+
+/* SEARCH VIEW */
+.search-bar {
+  position: absolute;
+  left: 48rem;
+  border-radius: 15px;
+  width: 400px;
+  border: none;
+  height: 30px;
+  background-color: #dfdad5;
+  font-family:
+    Comfortaa,
+    cursive,
+    sans-serif;
+}
+
+input {
+  padding-left: 20px;
+}
+
+::placeholder {
+  color: #79aaba;
+  font-family:
+    Comfortaa,
+    cursive,
+    sans-serif;
+}
+
+.search-result-photo {
+  width: 400px;
+  height: 500px;
+  border-radius: 10px;
+}
+
+.search-result-photo:hover {
+  transform: translateY(-20px);
+  cursor: pointer;
+  transition: transform 250ms;
 }

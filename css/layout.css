@@ -1,3 +1,7 @@
+.hidden {
+  display: none !important;
+}
+
 .row {
   display: flex;
 }
@@ -8,6 +12,10 @@
 }
 
 /* COLUMN SIZING */
+.column-full {
+  width: 100%;
+}
+
 .column-half {
   width: calc(100% / 2);
 }
