@@ -8,11 +8,55 @@
   <link rel="stylesheet" href="css/reset.css">
   <link rel="stylesheet" href="css/layout.css">
   <link rel="stylesheet" href="css/styles.css">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Comfortaa&display=swap" rel="stylesheet">
 </head>
-<body>
+<body class="img-background">
   <header>
+    <div class="row">
+      <div class="column-half padding-bottom-20 display-flex align-items-flex-end padding-left-50 pink-background-nav-bar">
+        <img src="./images/icon.png" alt="icon" class="img-icon padding-left-10">
+        <p class="font-comfortaa font-color-brown">The World of Studio Ghibli.</p>
+      </div>
+      <div class="column-half display-flex text-align-right jc-flex-end align-items-flex-end padding-right-50">
+        <!-- <div class="column-one-third">
+          <p class="font-comfortaa font-color-wh">search</p>
+        </div> -->
+        <div class="column-one-third">
+          <p class="font-comfortaa font-color-wh">home</p>
+        </div>
+      </div>
+    </div>
   </header>
   <main>
+    <div class="container" data-view="home">
+      <div class="divider-line"></div>
+      <div class="row">
+        <div class="column-half pink-background display-flex jc-center align-items-center">
+          <div class="card-info-box">
+            <div class="text-align-c padding-top-10">
+              <img src="/images/totoro.png" alt="totoro" class="img-totoro">
+            </div>
+            <p class="font-comfortaa padding-left-20 padding-right-20">
+              Hiyao Miyazaki is a notorious Japanese animator who beautifully constructs immersive worlds in his storytelling. Through masterful animation and attention to detail, Studio Ghibli consistently crafts nostalgic and unique films that captivates audience members.
+            </p>
+            <p class="font-comfortaa padding-left-20 padding-right-20">
+              Each Studio Ghibli film demonstrates how humans should foster a respectful relationship with nature as each theme consists of the war between nature and industrialism. Are humans able to co&ndash;exist harmoniously with nature? How has human individualism and greed affect others around us and the environment?
+            </p>
+            <p class="font-comfortaa padding-left-20 padding-right-20">
+              &#34;The creation of a single world comes from a huge number of fragments and chaos.&#34;
+            </p>
+            <p class="font-comfortaa padding-left-20 padding-right-20">
+              &#8212; Hiyao Miyazaki
+            </p>
+          </div>
+        </div>
+        <div class="column-half">
+          <img src="/images/haku.png" alt="Haku Dragon" class="img-dragon z-index-1">
+        </div>
+      </div>
+    </div>
   </main>
   <script src="js/data.js"></script>
   <script src="js/main.js"></script>
