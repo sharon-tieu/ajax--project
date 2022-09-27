@@ -1,13 +1,10 @@
-* {
-  box-sizing: border-box;
-}
-
-body {
-  margin: 0;
-}
-
 .red-line {
   border: 2px solid red;
+}
+
+/* NAVIGATION BAR */
+a {
+  text-decoration: none;
 }
 
 /* IMAGES */
@@ -168,7 +165,7 @@ h4:hover {
   position: absolute;
   left: 48rem;
   border-radius: 15px;
-  width: 400px;
+  width: 370px;
   border: none;
   height: 30px;
   background-color: #dfdad5;
@@ -176,10 +173,40 @@ h4:hover {
     Comfortaa,
     cursive,
     sans-serif;
+  padding-left: 20px;
 }
 
-input {
-  padding-left: 20px;
+.search-bar:active {
+  border-color: #78aaba;
+}
+
+.search-btn {
+  position: absolute;
+  left: 74rem;
+  border-radius: 15px;
+  border: none;
+  width: 75px;
+  height: 30px;
+  top: 149px;
+  background-color: #78aaba;
+  font-family:
+    Comfortaa,
+    cursive,
+    sans-serif;
+  color: #dfdad5;
+  transition: background 0.5s ease-in;
+}
+
+.search-btn:hover {
+  cursor: pointer;
+  color: white;
+  background-color: #a4a9b1;
+}
+
+.search-btn:active {
+  transform: translateY(5px);
+  cursor: pointer;
+  transition: transform 10ms;
 }
 
 ::placeholder {

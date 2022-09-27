@@ -19,12 +19,12 @@
         <img src="./images/icon.png" alt="icon" class="img-icon padding-left-10">
         <p class="font-comfortaa font-color-brown">The World of Studio Ghibli.</p>
       </div>
-      <div class="column-half display-flex text-align-right jc-flex-end align-items-flex-end padding-right-50">
+      <div class="column-half display-flex text-align-right jc-flex-end align-items-flex-end align-items-center padding-right-50">
         <div class="column-one-third">
-          <p class="font-comfortaa font-color-wh">search</p>
+          <a href="#search" class="font-comfortaa font-color-wh search-nav-bar">search</a>
         </div>
         <div class="column-one-third">
-          <p class="font-comfortaa font-color-wh">home</p>
+          <a href="#home" class="font-comfortaa font-color-wh home-nav-bar">home</a>
         </div>
       </div>
     </div>
@@ -34,7 +34,7 @@
       <div class="divider-line"></div>
 
       <!-- data-view: HOME -->
-      <div class="row hidden" data-view="home">
+      <div class="row home-page-view" data-view="home-view">
         <div class="column-half pink-background display-flex jc-center align-items-center">
           <div class="card-info-box">
             <div class="text-align-c padding-top-10">
@@ -59,27 +59,32 @@
       <!-- --------------- -->
 
       <!-- data-view: SEARCH -->
-      <div class="row" data-view="search-results">
+      <div class="row search-page-view hidden" data-view="search-view">
         <div class="padding-top-50">
+          <label for="search-information" class="font-comfortaa"></label>
           <input
           type="text"
-          name="search"
-          id="search"
+          name="search-information"
+          id="search-information"
           class="search-bar"
-          placeholder="search...">
+          placeholder="ghibli characters or locations...">
+          <button class="search-btn">search</button>
         </div>
         <div class="column-half pink-background display-flex jc-center align-items-center">
-          <label for="search" class="font-comfortaa"></label>
-          <div class="card-info-box" id="card-box">
-            <!-- DUMMY ENTRIES -->
-            <h4 class="font-comfortaa text-align-c">Card Title</h4>
-            <div class="divider-line"></div>
-            <p class="font-comfortaa padding-left-20 padding-right-20">
-              Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna
-              aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis
-              aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint
-              occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
-            </p>
+          <div class="card-info-box">
+            <div>
+              <!-- DUMMY ENTRIES -->
+              <div class="font-comfortaa text-align-c">
+                Card Title
+              </div>
+              <div class="divider-line"></div>
+              <div class="info-location font-comfortaa padding-left-20 padding-right-20">
+                Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna
+                aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis
+                aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint
+                occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
+              </div>
+            </div>
           </div>
         </div>
         <div class="column-half display-flex jc-center align-items-center">
