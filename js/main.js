@@ -2,6 +2,7 @@ var $homeNavBar = document.querySelector('.home-nav-bar');
 var $searchNavBar = document.querySelector('.search-nav-bar');
 var $homeView = document.querySelector('.home-page-view');
 var $searchView = document.querySelector('.search-page-view');
+var $pageTitle = document.querySelector('.page-title');
 
 // ====== VIEW SWAPPING ====== //
 function viewSwap(view) {
@@ -21,6 +22,11 @@ $searchNavBar.addEventListener('click', function () {
   $getGhibli.reset();
   $ulElements.textContent = '';
   $ulMovieTitle.textContent = '';
+  viewSwap();
+});
+
+$pageTitle.addEventListener('click', function () {
+  data.view = 'home-view';
   viewSwap();
 });
 
