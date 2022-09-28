@@ -3,7 +3,8 @@
 var data = {
   view: 'home-view',
   entries: [],
-  likesId: 1
+  likesId: 1,
+  oldSearches: ''
 };
 
 window.addEventListener('beforeunload', function (event) {
