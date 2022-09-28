@@ -183,6 +183,10 @@ h4:hover {
   text-align: right;
 }
 
+.text-align-left {
+  text-align: left;
+}
+
 /* SEARCH VIEW */
 .search-bar {
   position: absolute;
