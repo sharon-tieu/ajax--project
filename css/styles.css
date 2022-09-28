@@ -113,6 +113,10 @@ h4:hover {
   padding-top: 50px;
 }
 
+.padding-bottom-10 {
+  padding-bottom: 10px;
+}
+
 .padding-bottom-20 {
   padding-bottom: 20px;
 }
@@ -209,12 +213,12 @@ h4:hover {
 
 .search-btn {
   position: absolute;
-  left: 74rem;
+  left: 66.5rem;
+  top: 146px;
   border-radius: 15px;
   border: none;
   width: 75px;
   height: 30px;
-  top: 145px;
   background-color: #78aaba;
   font-family:
     Comfortaa,

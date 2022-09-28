@@ -18,6 +18,9 @@ function viewSwap(view) {
 
 $searchNavBar.addEventListener('click', function () {
   data.view = 'search-view';
+  $getGhibli.reset();
+  $ulElements.textContent = '';
+  $ulMovieTitle.textContent = '';
   viewSwap();
 });
 
