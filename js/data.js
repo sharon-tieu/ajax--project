@@ -2,14 +2,14 @@
 
 var data = {
   view: 'home-view',
-  entries: [],
+  likes: [],
   likesId: 1,
   oldSearches: ''
 };
 
 window.addEventListener('beforeunload', function (event) {
   var dataJSON = JSON.stringify(data);
-  this.localStorage.setItem('user-likes-local-storage', dataJSON);
+  this.localStorage.setItem('likes-local-storage', dataJSON);
 });
 
 var previousDataJSON = localStorage.getItem('user-likes-local-storage');

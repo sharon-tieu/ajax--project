@@ -66,10 +66,42 @@ function getGhibliCharacter(name) {
       return el.name === name;
     });
 
+    var $parentDiv = document.createElement('div');
+    $parentDiv.setAttribute('class', 'row align-items-center jc-flex-end');
+    $cardLabel.appendChild($parentDiv);
+
+    var $colDiv = document.createElement('div');
+    $colDiv.setAttribute('class', 'column-half');
+    $parentDiv.appendChild($colDiv);
+
     // var $ulTitle = document.createElement('ul');
     $ulTitle.textContent = character[0].name;
     $ulTitle.setAttribute('class', 'font-comfortaa search-item text-align-center');
-    $cardLabel.appendChild($ulTitle);
+    $colDiv.appendChild($ulTitle);
+
+    var $colThird = document.createElement('div');
+    $colThird.setAttribute('class', 'column-one-third');
+    $parentDiv.appendChild($colThird);
+
+    var $heart = document.createElement('i');
+    $heart.setAttribute('class', 'fa-regular fa-heart');
+    $colThird.appendChild($heart);
+
+    var $unHeart = document.createElement('i');
+    $unHeart.setAttribute('class', 'fa-solid fa-heart pink-heart hidden');
+    $colThird.appendChild($unHeart);
+
+    $heart.addEventListener('click', function () {
+      // console.log('liked !');
+      $heart.classList.add('hidden');
+      $unHeart.classList.remove('hidden');
+    });
+
+    $unHeart.addEventListener('click', function () {
+      // console.log('unliked !');
+      $heart.classList.remove('hidden');
+      $unHeart.classList.add('hidden');
+    });
 
     // var $liAge = document.createElement('li');
     $liAge.textContent = 'Age: ' + character[0].age;
@@ -129,3 +161,5 @@ var $searchInfo = document.querySelector('.search-info');
 $searchButton.addEventListener('click', function () {
   getGhibliCharacter($searchInfo.value);
 });
+
+// LIKE
