@@ -2,6 +2,10 @@
   border: 2px solid red;
 }
 
+.blue-line {
+  border: 2px solid blue;
+}
+
 /* NAVIGATION BAR */
 a {
   text-decoration: none;
@@ -84,6 +88,17 @@ h4:hover {
   cursor: pointer;
 }
 
+.img-chick {
+  height: 200px;
+  width: 170px;
+}
+
+.img-chick:hover {
+  cursor: pointer;
+  transform: translateY(-10px);
+  transition: transform 300ms;
+}
+
 /* SPACING */
 .padding-left-20 {
   padding-left: 20px;
@@ -119,6 +134,10 @@ h4:hover {
 
 .padding-bottom-20 {
   padding-bottom: 20px;
+}
+
+.margin-top-5 {
+  margin-top: 5px;
 }
 
 .margin-left-5 {

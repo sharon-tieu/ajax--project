@@ -1,8 +1,11 @@
 var $homeNavBar = document.querySelector('.home-nav-bar');
 var $searchNavBar = document.querySelector('.search-nav-bar');
+var $likesNavBar = document.querySelector('.likes-nav-bar');
 var $homeView = document.querySelector('.home-page-view');
 var $searchView = document.querySelector('.search-page-view');
+var $likesView = document.querySelector('.likes-page-view');
 var $pageTitle = document.querySelector('.page-title');
+var $imgChick = document.querySelector('.img-chick');
 
 // ====== VIEW SWAPPING ====== //
 function viewSwap(view) {
@@ -10,10 +13,17 @@ function viewSwap(view) {
     data.view = 'home-view';
     $homeView.className = 'row home-view';
     $searchView.className = 'hidden';
-  } else {
+    $likesView.className = 'hidden';
+  } else if (data.view === 'search-view') {
     data.view = 'search-view';
     $homeView.className = 'hidden';
     $searchView.className = 'row search-view';
+    $likesView.className = 'hidden';
+  } else {
+    data.view = 'likes-view';
+    $homeView.className = 'hidden';
+    $searchView.className = 'hidden';
+    $likesView.className = 'row likes-page-view flex-wrap-wrap';
   }
 }
 
@@ -32,6 +42,16 @@ $pageTitle.addEventListener('click', function () {
 
 $homeNavBar.addEventListener('click', function () {
   data.view = 'home-view';
+  viewSwap();
+});
+
+$likesNavBar.addEventListener('click', function () {
+  data.view = 'likes-view';
+  viewSwap();
+});
+
+$imgChick.addEventListener('click', function () {
+  data.view = 'search-view';
   viewSwap();
 });
 
