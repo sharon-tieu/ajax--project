@@ -65,6 +65,7 @@ function getGhibliCharacter(name) {
     var character = xhr.response.filter(function (el) {
       return el.name === name;
     });
+    // console.log('character object:', character);
 
     var $parentDiv = document.createElement('div');
     $parentDiv.setAttribute('class', 'row align-items-center jc-flex-end');
@@ -91,17 +92,28 @@ function getGhibliCharacter(name) {
     $unHeart.setAttribute('class', 'fa-solid fa-heart pink-heart hidden');
     $colThird.appendChild($unHeart);
 
+    $heart = document.querySelector('.fa-regular');
     $heart.addEventListener('click', function () {
       // console.log('liked !');
       $heart.classList.add('hidden');
       $unHeart.classList.remove('hidden');
+      userLikes();
     });
 
+    $unHeart = document.querySelector('.fa-solid');
     $unHeart.addEventListener('click', function () {
       // console.log('unliked !');
       $heart.classList.remove('hidden');
       $unHeart.classList.add('hidden');
     });
+
+    function userLikes() {
+      var dataLikes = data.likes;
+      if ($heart) {
+        dataLikes.push(character);
+      }
+      // console.log('data.likes[0]:', data.likes[0]);
+    }
 
     // var $liAge = document.createElement('li');
     $liAge.textContent = 'Age: ' + character[0].age;
