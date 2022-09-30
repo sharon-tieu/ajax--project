@@ -12,7 +12,7 @@ window.addEventListener('beforeunload', function (event) {
   this.localStorage.setItem('likes-local-storage', dataJSON);
 });
 
-var previousDataJSON = localStorage.getItem('user-likes-local-storage');
+var previousDataJSON = localStorage.getItem('likes-local-storage');
 if (previousDataJSON !== null) {
   data = JSON.parse(previousDataJSON);
 }

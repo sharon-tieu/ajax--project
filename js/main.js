@@ -47,6 +47,11 @@ $homeNavBar.addEventListener('click', function () {
 
 $likesNavBar.addEventListener('click', function () {
   data.view = 'likes-view';
+  if (data.likes.length === 0) {
+    noLikesView();
+  } else {
+    viewLikesList();
+  }
   viewSwap();
 });
 
@@ -57,6 +62,15 @@ $imgChick.addEventListener('click', function () {
 
 window.addEventListener('DOMContentLoaded', function (event) {
   viewSwap();
+  var $viewLikes = document.querySelector('.view-likes-list');
+  if (data.likes.length > 0) {
+    for (var i = 0; i < data.likes.length; i++) {
+      var showLikes = viewLikesList(data.likes[i][0]);
+      $viewLikes.append(showLikes);
+    }
+  } else {
+    noLikesView();
+  }
 });
 
 // ====== HTTP REQUEST FUNCTION ====== //
@@ -118,6 +132,7 @@ function getGhibliCharacter(name) {
       $heart.classList.add('hidden');
       $unHeart.classList.remove('hidden');
       userLikes();
+      data.likesId++;
     });
 
     $unHeart = document.querySelector('.fa-solid');
@@ -194,4 +209,78 @@ $searchButton.addEventListener('click', function () {
   getGhibliCharacter($searchInfo.value);
 });
 
-// LIKE
+var $noLikesView = document.querySelector('.no-likes-view');
+var $likesListResults = document.querySelector('.likes-list-results');
+function noLikesView() {
+  if (data.likes.length === 0) {
+    $noLikesView.className = 'no-likes-view column-full margin-top-5 text-align-c padding-top-20';
+    $likesListResults.className = 'hidden';
+  } else {
+    $noLikesView.className = 'hidden';
+    $likesListResults.className = 'likes-list-results column-full margin-top-5 display-flex';
+  }
+}
+
+// LIKES LIST
+var $viewLikesList = document.querySelector('.view-likes-list');
+
+function viewLikesList(likesEntry) {
+
+  var $divParentLayout = document.createElement('div');
+  $divParentLayout.setAttribute('class', 'column-one-third display-flex jc-center align-items-center padding-top-10 padding-bottom-10');
+  $viewLikesList.appendChild($divParentLayout);
+
+  var $cardBox = document.createElement('div');
+  $cardBox.setAttribute('class', 'card-home-box');
+  $divParentLayout.appendChild($cardBox);
+
+  var $contentParentDiv = document.createElement('div');
+  $contentParentDiv.setAttribute('class', 'text-align-c padding-top-10 display-flex align-items-center');
+  $cardBox.appendChild($contentParentDiv);
+
+  var $pName = document.createElement('p');
+  $pName.setAttribute('class', 'font-comfortaa column-half jc-flex-end text-align-right');
+  $pName.textContent = likesEntry.name;
+  $contentParentDiv.appendChild($pName);
+
+  var $heart = document.createElement('i');
+  $heart.setAttribute('class', 'fa-solid fa-heart column-half pink-heart');
+  $contentParentDiv.appendChild($heart);
+
+  var $ulData = document.createElement('ul');
+  $ulData.setAttribute('class', 'text-align-left padding-top-10');
+  $cardBox.appendChild($ulData);
+
+  var $liAge = document.createElement('li');
+  $liAge.setAttribute('class', 'font-comfortaa');
+  $liAge.textContent = 'Age: ' + likesEntry.age;
+  $ulData.appendChild($liAge);
+
+  var $liGender = document.createElement('li');
+  $liGender.textContent = 'Gender: ' + likesEntry.gender;
+  $liGender.setAttribute('class', 'font-comfortaa');
+  $ulData.appendChild($liGender);
+
+  var $liEyeColor = document.createElement('li');
+  $liEyeColor.textContent = 'Eye Color: ' + likesEntry.eye_color;
+  $liEyeColor.setAttribute('class', 'font-comfortaa');
+  $ulData.appendChild($liEyeColor);
+
+  var $liHairColor = document.createElement('li');
+  $liHairColor.textContent = 'Hair Color: ' + likesEntry.hair_color;
+  $liHairColor.setAttribute('class', 'font-comfortaa');
+  $ulData.appendChild($liHairColor);
+
+  var likesSpecies = new XMLHttpRequest();
+  likesSpecies.open('GET', likesEntry.species);
+  likesSpecies.responseType = 'json';
+  likesSpecies.addEventListener('load', function () {
+    // console.log('likesSpecies.response:', likesSpecies.response.name);
+    var $liSpecies = document.createElement('li');
+    $liSpecies.textContent = 'Species: ' + likesSpecies.response.name;
+    $liSpecies.setAttribute('class', 'font-comfortaa');
+    $ulData.appendChild($liSpecies);
+  });
+  likesSpecies.send();
+
+}
