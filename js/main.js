@@ -47,11 +47,11 @@ $homeNavBar.addEventListener('click', function () {
 
 $likesNavBar.addEventListener('click', function () {
   data.view = 'likes-view';
-  if (data.likes.length === 0) {
-    noLikesView();
-  } else {
-    viewLikesList();
-  }
+  // if (data.likes.length > 0) {
+  //   viewLikesList();
+  // } else {
+  //   noLikesView();
+  // }
   viewSwap();
 });
 
@@ -61,7 +61,6 @@ $imgChick.addEventListener('click', function () {
 });
 
 window.addEventListener('DOMContentLoaded', function (event) {
-  viewSwap();
   var $viewLikes = document.querySelector('.view-likes-list');
   if (data.likes.length > 0) {
     for (var i = 0; i < data.likes.length; i++) {
@@ -71,6 +70,7 @@ window.addEventListener('DOMContentLoaded', function (event) {
   } else {
     noLikesView();
   }
+  viewSwap();
 });
 
 // ====== HTTP REQUEST FUNCTION ====== //
@@ -225,6 +225,8 @@ function noLikesView() {
 var $viewLikesList = document.querySelector('.view-likes-list');
 
 function viewLikesList(likesEntry) {
+  console.log('likesEntry:', likesEntry);
+  console.log('likesEntry.name:', likesEntry.name);
 
   var $divParentLayout = document.createElement('div');
   $divParentLayout.setAttribute('class', 'column-one-third display-flex jc-center align-items-center padding-top-10 padding-bottom-10');
@@ -246,6 +248,25 @@ function viewLikesList(likesEntry) {
   var $heart = document.createElement('i');
   $heart.setAttribute('class', 'fa-solid fa-heart column-half pink-heart');
   $contentParentDiv.appendChild($heart);
+
+  $heart.addEventListener('click', function () {
+    var $modalContainer = document.querySelector('.modal-container');
+    $modalContainer.classList.remove('hidden');
+
+    var $cancelButton = document.querySelector('.modal-cancel');
+    $cancelButton.addEventListener('click', function () {
+      $modalContainer.classList.add('hidden');
+    });
+
+    var $removeButton = document.querySelector('.modal-remove');
+    $removeButton.addEventListener('click', function () {
+      for (var i = 0; i < data.likes.length; i++) {
+        console.log('data.likes[i]:', data.likes[i]);
+        console.log(event.target.closest('ul'));
+      }
+      $modalContainer.classList.add('hidden');
+    });
+  });
 
   var $ulData = document.createElement('ul');
   $ulData.setAttribute('class', 'text-align-left padding-top-10');
@@ -275,12 +296,11 @@ function viewLikesList(likesEntry) {
   likesSpecies.open('GET', likesEntry.species);
   likesSpecies.responseType = 'json';
   likesSpecies.addEventListener('load', function () {
-    // console.log('likesSpecies.response:', likesSpecies.response.name);
     var $liSpecies = document.createElement('li');
     $liSpecies.textContent = 'Species: ' + likesSpecies.response.name;
     $liSpecies.setAttribute('class', 'font-comfortaa');
     $ulData.appendChild($liSpecies);
   });
-  likesSpecies.send();
 
+  likesSpecies.send();
 }
