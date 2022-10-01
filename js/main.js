@@ -225,8 +225,8 @@ function noLikesView() {
 var $viewLikesList = document.querySelector('.view-likes-list');
 
 function viewLikesList(likesEntry) {
-  console.log('likesEntry:', likesEntry);
-  console.log('likesEntry.name:', likesEntry.name);
+  // console.log('likesEntry:', likesEntry);
+  // console.log('likesEntry.name:', likesEntry.name);
 
   var $divParentLayout = document.createElement('div');
   $divParentLayout.setAttribute('class', 'column-one-third display-flex jc-center align-items-center padding-top-10 padding-bottom-10');
@@ -241,7 +241,7 @@ function viewLikesList(likesEntry) {
   $cardBox.appendChild($contentParentDiv);
 
   var $pName = document.createElement('p');
-  $pName.setAttribute('class', 'font-comfortaa column-half jc-flex-end text-align-right');
+  $pName.setAttribute('class', 'likes-data font-comfortaa column-half jc-flex-end text-align-right');
   $pName.textContent = likesEntry.name;
   $contentParentDiv.appendChild($pName);
 
@@ -260,9 +260,13 @@ function viewLikesList(likesEntry) {
 
     var $removeButton = document.querySelector('.modal-remove');
     $removeButton.addEventListener('click', function () {
+      debugger;
       for (var i = 0; i < data.likes.length; i++) {
-        console.log('data.likes[i]:', data.likes[i]);
-        console.log(event.target.closest('ul'));
+        console.log('data.likes:', data.likes);
+        if (data.likes[i][0].name === likesEntry.name) {
+          console.log('likesEntry.name:', likesEntry.name);
+
+        }
       }
       $modalContainer.classList.add('hidden');
     });
@@ -273,23 +277,23 @@ function viewLikesList(likesEntry) {
   $cardBox.appendChild($ulData);
 
   var $liAge = document.createElement('li');
-  $liAge.setAttribute('class', 'font-comfortaa');
+  $liAge.setAttribute('class', 'likes-data font-comfortaa');
   $liAge.textContent = 'Age: ' + likesEntry.age;
   $ulData.appendChild($liAge);
 
   var $liGender = document.createElement('li');
   $liGender.textContent = 'Gender: ' + likesEntry.gender;
-  $liGender.setAttribute('class', 'font-comfortaa');
+  $liGender.setAttribute('class', 'likes-data font-comfortaa');
   $ulData.appendChild($liGender);
 
   var $liEyeColor = document.createElement('li');
   $liEyeColor.textContent = 'Eye Color: ' + likesEntry.eye_color;
-  $liEyeColor.setAttribute('class', 'font-comfortaa');
+  $liEyeColor.setAttribute('class', 'likes-data font-comfortaa');
   $ulData.appendChild($liEyeColor);
 
   var $liHairColor = document.createElement('li');
   $liHairColor.textContent = 'Hair Color: ' + likesEntry.hair_color;
-  $liHairColor.setAttribute('class', 'font-comfortaa');
+  $liHairColor.setAttribute('class', 'likes-data font-comfortaa');
   $ulData.appendChild($liHairColor);
 
   var likesSpecies = new XMLHttpRequest();
@@ -298,7 +302,7 @@ function viewLikesList(likesEntry) {
   likesSpecies.addEventListener('load', function () {
     var $liSpecies = document.createElement('li');
     $liSpecies.textContent = 'Species: ' + likesSpecies.response.name;
-    $liSpecies.setAttribute('class', 'font-comfortaa');
+    $liSpecies.setAttribute('class', 'likes-data font-comfortaa');
     $ulData.appendChild($liSpecies);
   });
 
