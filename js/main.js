@@ -128,10 +128,13 @@ function getGhibliCharacter(name) {
 
     $heart = document.querySelector('.fa-regular');
     $heart.addEventListener('click', function () {
+      // console.log('liked !');
       $heart.classList.add('hidden');
       $unHeart.classList.remove('hidden');
       userLikes();
-      data.likesId++;
+      // var dataLikes = data.likes;
+      // dataLikes.likesId = 0;
+      // data.likesId++;
     });
 
     $unHeart = document.querySelector('.fa-solid');
