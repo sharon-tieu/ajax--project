@@ -87,7 +87,7 @@ function getGhibliCharacter(name) {
   var $liEyeColor = document.createElement('li');
   var $liHairColor = document.createElement('li');
 
-  $ulTitle.setAttribute('id', name);
+  // $ulTitle.setAttribsucute('id', name);
 
   var xhr = new XMLHttpRequest();
   xhr.open('GET', 'https://ghibliapi.herokuapp.com/people/');
@@ -132,7 +132,9 @@ function getGhibliCharacter(name) {
       $heart.classList.add('hidden');
       $unHeart.classList.remove('hidden');
       userLikes();
-      data.likesId++;
+      // var dataLikes = data.likes;
+      // dataLikes.likesId = 0;
+      // data.likesId++;
     });
 
     $unHeart = document.querySelector('.fa-solid');
@@ -147,7 +149,6 @@ function getGhibliCharacter(name) {
       if ($heart) {
         dataLikes.push(character);
       }
-      // console.log('data.likes[0]:', data.likes[0]);
     }
 
     // var $liAge = document.createElement('li');
@@ -262,9 +263,9 @@ function viewLikesList(likesEntry) {
 
     $removeButton.addEventListener('click', function () {
       for (var i = 0; i < data.likes.length; i++) {
-        console.log('data.likes:', data.likes);
-        if (data.likes[i][0].name === likesEntry.name) {
-          console.log('likesEntry.name:', likesEntry.name);
+        // console.log('data.likes:', data.likes);
+        if (data.likes[i][0].id === likesEntry.id) {
+          // console.log('likesEntry.id:', likesEntry.id);
           var $allLikesData = document.querySelectorAll('li');
           $allLikesData[i].remove();
         }
