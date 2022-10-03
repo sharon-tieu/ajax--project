@@ -2,6 +2,10 @@
   border: 2px solid red;
 }
 
+.blue-line {
+  border: 2px solid blue;
+}
+
 /* NAVIGATION BAR */
 a {
   text-decoration: none;
@@ -84,6 +88,17 @@ h4:hover {
   cursor: pointer;
 }
 
+.img-chick {
+  height: 200px;
+  width: 170px;
+}
+
+.img-chick:hover {
+  cursor: pointer;
+  transform: translateY(-10px);
+  transition: transform 300ms;
+}
+
 /* SPACING */
 .padding-left-20 {
   padding-left: 20px;
@@ -119,6 +134,10 @@ h4:hover {
 
 .padding-bottom-20 {
   padding-bottom: 20px;
+}
+
+.margin-top-5 {
+  margin-top: 5px;
 }
 
 .margin-left-5 {
@@ -200,7 +219,7 @@ h4:hover {
   position: absolute;
   left: 48rem;
   border-radius: 15px;
-  width: 370px;
+  width: 360px;
   border: none;
   height: 30px;
   background-color: #dfdad5;
@@ -217,7 +236,7 @@ h4:hover {
 
 .search-btn {
   position: absolute;
-  left: 66.5rem;
+  left: 66rem;
   top: 146px;
   border-radius: 15px;
   border: none;
@@ -272,4 +291,61 @@ h4:hover {
 
 .pink-heart {
   color: #ddbfc0;
+}
+
+/* MODAL */
+.modal-container {
+  width: 100%;
+  height: 100%;
+  top: 0;
+  left: 0;
+  position: fixed;
+  background-color: rgb(51 51 51 / 86.3%);
+  cursor: pointer;
+}
+
+.modal-survey {
+  background-color: white;
+  margin-top: 15%;
+  margin-left: 30%;
+  margin-right: 30%;
+  font-size: 20px;
+  padding-top: 20px;
+  padding-bottom: 30px;
+  border-radius: 20px;
+}
+
+.modal-cancel,
+.modal-remove {
+  display: inline-block;
+  padding: 0.7em 1.4em;
+  margin: 0 0.3em 0.3em 0;
+  box-sizing: border-box;
+  text-transform: lowercase;
+  font-weight: 400;
+  color: #fff;
+  box-shadow: inset 0 -0.6em 0 -0.35em rgba(0, 0, 0, 0.17);
+  text-align: center;
+  position: relative;
+  border-radius: 8px;
+  border: none;
+  font-family:
+    Comfortaa,
+    cursive,
+    sans-serif;
+}
+
+.modal-cancel {
+  background-color: #dfc1df;
+}
+
+.modal-remove {
+  background-color: #447d8e;
+}
+
+.modal-cancel:active,
+.modal-remove:active {
+  transform: translateY(4px);
+  cursor: pointer;
+  transition: transform 250ms;
 }

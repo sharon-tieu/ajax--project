@@ -1,8 +1,11 @@
 var $homeNavBar = document.querySelector('.home-nav-bar');
 var $searchNavBar = document.querySelector('.search-nav-bar');
+var $likesNavBar = document.querySelector('.likes-nav-bar');
 var $homeView = document.querySelector('.home-page-view');
 var $searchView = document.querySelector('.search-page-view');
+var $likesView = document.querySelector('.likes-page-view');
 var $pageTitle = document.querySelector('.page-title');
+var $imgChick = document.querySelector('.img-chick');
 
 // ====== VIEW SWAPPING ====== //
 function viewSwap(view) {
@@ -10,10 +13,17 @@ function viewSwap(view) {
     data.view = 'home-view';
     $homeView.className = 'row home-view';
     $searchView.className = 'hidden';
-  } else {
+    $likesView.className = 'hidden';
+  } else if (data.view === 'search-view') {
     data.view = 'search-view';
     $homeView.className = 'hidden';
     $searchView.className = 'row search-view';
+    $likesView.className = 'hidden';
+  } else {
+    data.view = 'likes-view';
+    $homeView.className = 'hidden';
+    $searchView.className = 'hidden';
+    $likesView.className = 'row likes-page-view flex-wrap-wrap';
   }
 }
 
@@ -35,7 +45,31 @@ $homeNavBar.addEventListener('click', function () {
   viewSwap();
 });
 
+$likesNavBar.addEventListener('click', function () {
+  data.view = 'likes-view';
+  // if (data.likes.length > 0) {
+  //   viewLikesList();
+  // } else {
+  //   noLikesView();
+  // }
+  viewSwap();
+});
+
+$imgChick.addEventListener('click', function () {
+  data.view = 'search-view';
+  viewSwap();
+});
+
 window.addEventListener('DOMContentLoaded', function (event) {
+  var $viewLikes = document.querySelector('.view-likes-list');
+  if (data.likes.length > 0) {
+    for (var i = 0; i < data.likes.length; i++) {
+      var showLikes = viewLikesList(data.likes[i][0]);
+      $viewLikes.append(showLikes);
+    }
+  } else {
+    noLikesView();
+  }
   viewSwap();
 });
 
@@ -53,7 +87,7 @@ function getGhibliCharacter(name) {
   var $liEyeColor = document.createElement('li');
   var $liHairColor = document.createElement('li');
 
-  $ulTitle.setAttribute('id', name);
+  // $ulTitle.setAttribsucute('id', name);
 
   var xhr = new XMLHttpRequest();
   xhr.open('GET', 'https://ghibliapi.herokuapp.com/people/');
@@ -98,6 +132,9 @@ function getGhibliCharacter(name) {
       $heart.classList.add('hidden');
       $unHeart.classList.remove('hidden');
       userLikes();
+      // var dataLikes = data.likes;
+      // dataLikes.likesId = 0;
+      // data.likesId++;
     });
 
     $unHeart = document.querySelector('.fa-solid');
@@ -112,7 +149,6 @@ function getGhibliCharacter(name) {
       if ($heart) {
         dataLikes.push(character);
       }
-      // console.log('data.likes[0]:', data.likes[0]);
     }
 
     // var $liAge = document.createElement('li');
@@ -174,4 +210,114 @@ $searchButton.addEventListener('click', function () {
   getGhibliCharacter($searchInfo.value);
 });
 
-// LIKE
+var $noLikesView = document.querySelector('.no-likes-view');
+var $likesListResults = document.querySelector('.likes-list-results');
+function noLikesView() {
+  if (data.likes.length === 0) {
+    $noLikesView.className = 'no-likes-view column-full margin-top-5 text-align-c padding-top-20';
+    $likesListResults.className = 'hidden';
+  } else {
+    $noLikesView.className = 'hidden';
+    $likesListResults.className = 'likes-list-results column-full margin-top-5 display-flex';
+  }
+}
+
+// LIKES LIST
+var $viewLikesList = document.querySelector('.view-likes-list');
+
+function viewLikesList(likesEntry) {
+  // console.log('likesEntry:', likesEntry);
+  // console.log('likesEntry.name:', likesEntry.name);
+
+  var $divParentLayout = document.createElement('div');
+  $divParentLayout.setAttribute('class', 'column-one-third display-flex jc-center align-items-center padding-top-10 padding-bottom-10');
+  $viewLikesList.appendChild($divParentLayout);
+
+  var $cardBox = document.createElement('div');
+  $cardBox.setAttribute('class', 'card-home-box');
+  $divParentLayout.appendChild($cardBox);
+
+  var $contentParentDiv = document.createElement('div');
+  $contentParentDiv.setAttribute('class', 'text-align-c padding-top-10 display-flex align-items-center');
+  $cardBox.appendChild($contentParentDiv);
+
+  var $pName = document.createElement('p');
+  $pName.setAttribute('class', 'likes-data font-comfortaa column-half jc-flex-end text-align-right');
+  $pName.textContent = likesEntry.name;
+  $contentParentDiv.appendChild($pName);
+
+  var $heart = document.createElement('i');
+  $heart.setAttribute('class', 'fa-solid fa-heart column-half pink-heart');
+  $contentParentDiv.appendChild($heart);
+
+  $heart.addEventListener('click', function () {
+    var $modalContainer = document.querySelector('.modal-container');
+    $modalContainer.classList.remove('hidden');
+
+    var $cancelButton = document.querySelector('.modal-cancel');
+    $cancelButton.addEventListener('click', function () {
+      $modalContainer.classList.add('hidden');
+    });
+
+    var $removeButton = document.querySelector('.modal-remove');
+
+    $removeButton.addEventListener('click', function () {
+      for (var i = 0; i < data.likes.length; i++) {
+        // console.log('data.likes:', data.likes);
+        if (data.likes[i][0].id === likesEntry.id) {
+          // console.log('likesEntry.id:', likesEntry.id);
+          var $allLikesData = document.querySelectorAll('li');
+          $allLikesData[i].remove();
+        }
+      }
+      $modalContainer.classList.add('hidden');
+    });
+  });
+
+  // var $taskList = document.querySelector('.task-list');
+  // $taskList.addEventListener('click', function (event) {
+  //   console.log('event.target:', event.target);
+  //   console.log('event.target.tagName:', event.target.tagName);
+  //   if (event.target.tagName === 'BUTTON') {
+  //     var ancestorElement = event.target.closest('.task-list-item');
+  //     console.log("event.target.closest('.task-list-item):", ancestorElement);
+  //     ancestorElement.remove();
+  //   }
+  // });
+
+  var $ulData = document.createElement('ul');
+  $ulData.setAttribute('class', 'text-align-left padding-top-10');
+  $cardBox.appendChild($ulData);
+
+  var $liAge = document.createElement('li');
+  $liAge.setAttribute('class', 'font-comfortaa');
+  $liAge.textContent = 'Age: ' + likesEntry.age;
+  $ulData.appendChild($liAge);
+
+  var $liGender = document.createElement('li');
+  $liGender.textContent = 'Gender: ' + likesEntry.gender;
+  $liGender.setAttribute('class', 'font-comfortaa');
+  $ulData.appendChild($liGender);
+
+  var $liEyeColor = document.createElement('li');
+  $liEyeColor.textContent = 'Eye Color: ' + likesEntry.eye_color;
+  $liEyeColor.setAttribute('class', 'font-comfortaa');
+  $ulData.appendChild($liEyeColor);
+
+  var $liHairColor = document.createElement('li');
+  $liHairColor.textContent = 'Hair Color: ' + likesEntry.hair_color;
+  $liHairColor.setAttribute('class', 'font-comfortaa');
+  $ulData.appendChild($liHairColor);
+
+  var likesSpecies = new XMLHttpRequest();
+  likesSpecies.open('GET', likesEntry.species);
+  likesSpecies.responseType = 'json';
+  likesSpecies.addEventListener('load', function () {
+    var $liSpecies = document.createElement('li');
+    $liSpecies.textContent = 'Species: ' + likesSpecies.response.name;
+    $liSpecies.setAttribute('class', 'font-comfortaa');
+    $ulData.appendChild($liSpecies);
+  });
+
+  likesSpecies.send();
+}

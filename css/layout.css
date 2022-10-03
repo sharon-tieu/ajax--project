@@ -40,6 +40,10 @@
   min-height: 10vh;
 }
 
+.flex-wrap-wrap {
+  flex-wrap: wrap;
+}
+
 /* MEDIA SCREEN */
 
 @media only screen and (max-width: 768px) {
