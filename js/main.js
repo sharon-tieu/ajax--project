@@ -261,22 +261,18 @@ function showLikeEntry(likesEntry) {
     var $removeButton = document.querySelector('.modal-remove');
 
     $removeButton.addEventListener('click', function () {
-      // var heartId = event.target.closest('div').getAttribute('class');
-      // console.log(heartId);
+      // debugger;
+      $modalContainer.classList.add('hidden');
       for (var i = 0; i < data.likes.length; i++) {
-        // console.log('$heart.id:', $heart.id);
-        // console.log('data.likes.id:', data.likes.id);
         if ($heart.id === data.likes[i].id) {
           data.likes.splice(i, 1);
           var $allCardBox = document.querySelectorAll('.column-one-third');
           for (var k = 0; k < $allCardBox.length; k++) {
             $allCardBox[i].remove();
-            data.view = 'likes-view';
-            viewSwap();
           }
         }
       }
-      $modalContainer.classList.add('hidden');
+      window.location.reload();
     });
   });
 
