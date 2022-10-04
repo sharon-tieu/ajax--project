@@ -61,11 +61,11 @@ $imgChick.addEventListener('click', function () {
 });
 
 window.addEventListener('DOMContentLoaded', function (event) {
-  var $viewLikes = document.querySelector('.view-likes-list');
+  // var $viewLikes = document.querySelector('.view-likes-list');
   if (data.likes.length > 0) {
     for (var i = 0; i < data.likes.length; i++) {
-      var showLikes = viewLikesList(data.likes[i][0]);
-      $viewLikes.append(showLikes);
+      showLikeEntry(data.likes[i]);
+      // $viewLikes.append(showLikes);
     }
   } else {
     noLikesView();
@@ -96,7 +96,7 @@ function getGhibliCharacter(name) {
     // console.log('xhr status:', xhr.status);
     // console.log('xhr response:', xhr.response);
 
-    var character = xhr.response.filter(function (el) {
+    var character = xhr.response.find(function (el) {
       return el.name === name;
     });
     // console.log('character object:', character);
@@ -110,7 +110,7 @@ function getGhibliCharacter(name) {
     $parentDiv.appendChild($colDiv);
 
     // var $ulTitle = document.createElement('ul');
-    $ulTitle.textContent = character[0].name;
+    $ulTitle.textContent = character.name;
     $ulTitle.setAttribute('class', 'font-comfortaa search-item text-align-center');
     $colDiv.appendChild($ulTitle);
 
@@ -152,28 +152,28 @@ function getGhibliCharacter(name) {
     }
 
     // var $liAge = document.createElement('li');
-    $liAge.textContent = 'Age: ' + character[0].age;
+    $liAge.textContent = 'Age: ' + character.age;
     $liAge.setAttribute('class', 'font-comfortaa search-item text-align-left');
     $cardLabel.appendChild($liAge);
 
     // var $liGender = document.createElement('li');
-    $liGender.textContent = 'Gender: ' + character[0].gender;
+    $liGender.textContent = 'Gender: ' + character.gender;
     $liGender.setAttribute('class', 'font-comfortaa search-item text-align-left');
     $cardLabel.appendChild($liGender);
 
     // var $liEyeColor = document.createElement('li');
-    $liEyeColor.textContent = 'Eye Color: ' + character[0].eye_color;
+    $liEyeColor.textContent = 'Eye Color: ' + character.eye_color;
     $liEyeColor.setAttribute('class', 'font-comfortaa search-item text-align-left');
     $cardLabel.appendChild($liEyeColor);
 
     // var $liHairColor = document.createElement('li');
-    $liHairColor.textContent = 'Hair Color: ' + character[0].hair_color;
+    $liHairColor.textContent = 'Hair Color: ' + character.hair_color;
     $liHairColor.setAttribute('class', 'font-comfortaa search-item text-align-left');
     $cardLabel.appendChild($liHairColor);
 
     // console.log('character[0].films[0]:', character[0].films[0]);
     var xhr2 = new XMLHttpRequest();
-    xhr2.open('GET', character[0].films[0]);
+    xhr2.open('GET', character.films[0]);
     xhr2.responseType = 'json';
     xhr2.addEventListener('load', function () {
       // console.log('xhr2.response.image: ', xhr2.response.image);
@@ -186,7 +186,7 @@ function getGhibliCharacter(name) {
     $ulMovieTitle.textContent = '';
 
     var xhr3 = new XMLHttpRequest();
-    xhr3.open('GET', character[0].species);
+    xhr3.open('GET', character.species);
     xhr3.responseType = 'json';
     xhr3.addEventListener('load', function () {
       // console.log('xhr3.response:', xhr3.response);
@@ -225,9 +225,7 @@ function noLikesView() {
 // LIKES LIST
 var $viewLikesList = document.querySelector('.view-likes-list');
 
-function viewLikesList(likesEntry) {
-  // console.log('likesEntry:', likesEntry);
-  // console.log('likesEntry.name:', likesEntry.name);
+function showLikeEntry(likesEntry) {
 
   var $divParentLayout = document.createElement('div');
   $divParentLayout.setAttribute('class', 'column-one-third display-flex jc-center align-items-center padding-top-10 padding-bottom-10');
@@ -248,6 +246,7 @@ function viewLikesList(likesEntry) {
 
   var $heart = document.createElement('i');
   $heart.setAttribute('class', 'fa-solid fa-heart column-half pink-heart');
+  $heart.setAttribute('id', likesEntry.id);
   $contentParentDiv.appendChild($heart);
 
   $heart.addEventListener('click', function () {
@@ -262,15 +261,18 @@ function viewLikesList(likesEntry) {
     var $removeButton = document.querySelector('.modal-remove');
 
     $removeButton.addEventListener('click', function () {
+      // debugger;
+      $modalContainer.classList.add('hidden');
       for (var i = 0; i < data.likes.length; i++) {
-        // console.log('data.likes:', data.likes);
-        if (data.likes[i][0].id === likesEntry.id) {
-          // console.log('likesEntry.id:', likesEntry.id);
-          var $allLikesData = document.querySelectorAll('li');
-          $allLikesData[i].remove();
+        if ($heart.id === data.likes[i].id) {
+          data.likes.splice(i, 1);
+          var $allCardBox = document.querySelectorAll('.column-one-third');
+          for (var k = 0; k < $allCardBox.length; k++) {
+            $allCardBox[i].remove();
+          }
         }
       }
-      $modalContainer.classList.add('hidden');
+      window.location.reload();
     });
   });
 
