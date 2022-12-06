@@ -1,14 +1,14 @@
-var $homeNavBar = document.querySelector('.home-nav-bar');
-var $searchNavBar = document.querySelector('.search-nav-bar');
-var $likesNavBar = document.querySelector('.likes-nav-bar');
-var $homeView = document.querySelector('.home-page-view');
-var $searchView = document.querySelector('.search-page-view');
-var $likesView = document.querySelector('.likes-page-view');
-var $pageTitle = document.querySelector('.page-title');
-var $imgChick = document.querySelector('.img-chick');
+const $homeNavBar = document.querySelector('.home-nav-bar');
+const $searchNavBar = document.querySelector('.search-nav-bar');
+const $likesNavBar = document.querySelector('.likes-nav-bar');
+const $homeView = document.querySelector('.home-page-view');
+const $searchView = document.querySelector('.search-page-view');
+const $likesView = document.querySelector('.likes-page-view');
+const $pageTitle = document.querySelector('.page-title');
+const $imgChick = document.querySelector('.img-chick');
 
 // ====== VIEW SWAPPING ====== //
-function viewSwap(view) {
+const viewSwap = view => {
   if (data.view === 'home-view') {
     data.view = 'home-view';
     $homeView.className = 'row home-view';
@@ -25,9 +25,9 @@ function viewSwap(view) {
     $searchView.className = 'hidden';
     $likesView.className = 'row likes-page-view flex-wrap-wrap';
   }
-}
+};
 
-$searchNavBar.addEventListener('click', function () {
+$searchNavBar.addEventListener('click', () => {
   data.view = 'search-view';
   $getGhibli.reset();
   $ulElements.textContent = '';
@@ -35,17 +35,17 @@ $searchNavBar.addEventListener('click', function () {
   viewSwap();
 });
 
-$pageTitle.addEventListener('click', function () {
+$pageTitle.addEventListener('click', () => {
   data.view = 'home-view';
   viewSwap();
 });
 
-$homeNavBar.addEventListener('click', function () {
+$homeNavBar.addEventListener('click', () => {
   data.view = 'home-view';
   viewSwap();
 });
 
-$likesNavBar.addEventListener('click', function () {
+$likesNavBar.addEventListener('click', () => {
   data.view = 'likes-view';
   // if (data.likes.length > 0) {
   //   viewLikesList();
@@ -55,7 +55,7 @@ $likesNavBar.addEventListener('click', function () {
   viewSwap();
 });
 
-$imgChick.addEventListener('click', function () {
+$imgChick.addEventListener('click', () => {
   data.view = 'search-view';
   viewSwap();
 });
@@ -74,23 +74,25 @@ window.addEventListener('DOMContentLoaded', function (event) {
 });
 
 // ====== HTTP REQUEST FUNCTION ====== //
-var $getGhibli = document.querySelector('.get-ghibli');
-var $cardLabel = document.querySelector('#card-label-result');
-var $ulMovieTitle = document.querySelector('#movie-title');
-var $ulElements = document.querySelector('ul');
+const $getGhibli = document.querySelector('.get-ghibli');
+const $cardLabel = document.querySelector('#card-label-result');
+const $ulMovieTitle = document.querySelector('#movie-title');
+const $ulElements = document.querySelector('ul');
 
-function getGhibliCharacter(name) {
+const getGhibliCharacter = name => {
 
-  var $ulTitle = document.createElement('p');
-  var $liAge = document.createElement('li');
-  var $liGender = document.createElement('li');
-  var $liEyeColor = document.createElement('li');
-  var $liHairColor = document.createElement('li');
+  const $ulTitle = document.createElement('p');
+  const $liAge = document.createElement('li');
+  const $liGender = document.createElement('li');
+  const $liEyeColor = document.createElement('li');
+  const $liHairColor = document.createElement('li');
 
   // $ulTitle.setAttribsucute('id', name);
 
+  const targetUrl = encodeURIComponent('https://ghibli-api.sharonproject.com/people/');
   var xhr = new XMLHttpRequest();
-  xhr.open('GET', 'https://ghibliapi.herokuapp.com/people/');
+  // xhr.open('GET', 'https://ghibliapi.herokuapp.com/people/');
+  xhr.open('GET', 'https://lfz-cors.herokuapp.com/?url=' + targetUrl);
   xhr.responseType = 'json';
   xhr.addEventListener('load', function () {
     // console.log('xhr status:', xhr.status);
@@ -200,7 +202,7 @@ function getGhibliCharacter(name) {
   xhr.send();
   $getGhibli.reset();
   $ulElements.textContent = '';
-}
+};
 // getGhibliCharacter();
 
 // ====== SEARCH BUTTON ====== //

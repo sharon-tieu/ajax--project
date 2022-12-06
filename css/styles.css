@@ -6,6 +6,10 @@
   border: 2px solid blue;
 }
 
+.green-line {
+  border: 2px solid green;
+}
+
 /* NAVIGATION BAR */
 a {
   text-decoration: none;
@@ -216,8 +220,8 @@ h4:hover {
 
 /* SEARCH VIEW */
 .search-bar {
-  position: absolute;
-  left: 48rem;
+  /* position: absolute;
+  left: 48rem; */
   border-radius: 15px;
   width: 360px;
   border: none;
