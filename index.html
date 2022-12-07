@@ -67,10 +67,35 @@
       </div>
 
       <!-- data-view: SEARCH -->
-      <div class="row search-page-view" data-view="search-view">
+      <div class="row search-page-view"
+            data-view="search-view">
 
+        <div class="column-half red-line display-flex jc-center align-items-center padding-top-50">
+          <div class="card-info-box">
+            <ul id="card-label-result" class="padding-top-20 padding-bottom-20 font-comfortaa text-align-c padding-right-50">
+              <!--
+                              <div class="row align-items-center jc-flex-end">
+                                <div class="column-half">
+                                  <p>name</p>
+                                </div>
+                                <div class="column-one-third">
+                                  <i class="fa-regular fa-heart"></i>
+                                  <i class="fa-solid fa-heart hidden"></i>
+                                </div>
+                              </div>
+                              <li class="text-align-left">age</li>
+                              <li class="text-align-left">gender</li> -->
+            </ul>
+          </div>
+        </div>
 
-        <div class="column-half blue-line">
+        <div id="card-photo-result" class="column-half display-flex jc-center align-items-center">
+          <ul id="movie-title">
+            <!-- <img src="/images/Princess_Mononoke.webp" class="movie-title-image search-item"> -->
+          </ul>
+        </div>
+
+        <div class="column-half blue-line text-align-c">
           <div class="padding-top-50">
             <form class="get-ghibli">
               <label for="search-information" class="font-comfortaa">
@@ -86,30 +111,7 @@
           </div>
         </div>
 
-        <div class="column-half blue-line display-flex jc-center align-items-center">
-          <div class="card-info-box">
-            <ul id="card-label-result" class="padding-top-20 padding-bottom-20 font-comfortaa text-align-c padding-right-50">
-              <!--
-                      <div class="row align-items-center jc-flex-end">
-                        <div class="column-half">
-                          <p>name</p>
-                        </div>
-                        <div class="column-one-third">
-                          <i class="fa-regular fa-heart"></i>
-                          <i class="fa-solid fa-heart hidden"></i>
-                        </div>
-                      </div>
-                      <li class="text-align-left">age</li>
-                      <li class="text-align-left">gender</li> -->
-            </ul>
-          </div>
-        </div>
 
-        <div id="card-photo-result" class="column-half display-flex jc-center align-items-center">
-          <ul id="movie-title">
-            <!-- <img src="/images/Princess_Mononoke.webp" class="movie-title-image search-item"> -->
-          </ul>
-        </div>
       </div>
 
       <!-- data-view: LIKES -->

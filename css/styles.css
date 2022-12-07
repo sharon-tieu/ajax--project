@@ -239,8 +239,8 @@ h4:hover {
 }
 
 .search-btn {
-  position: absolute;
-  left: 66rem;
+  /* position: absolute;
+  left: 66rem; */
   top: 146px;
   border-radius: 15px;
   border: none;
