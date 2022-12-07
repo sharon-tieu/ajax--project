@@ -67,10 +67,19 @@
       </div>
 
       <!-- data-view: SEARCH -->
-      <div class="row search-page-view"
-            data-view="search-view">
-
-        <div class="column-half red-line display-flex jc-center align-items-center padding-top-50">
+      <div class="row search-page-view" data-view="search-view">
+        <div class="column-half text-align-c">
+          <div class="padding-top-50">
+            <form class="get-ghibli">
+              <label for="search-information" class="font-comfortaa">
+                <input type="text" name="search-information" id="search-information" class="search-bar search-info"
+                  placeholder="ghibli characters...">
+                <button class="search-btn">search</button>
+              </label>
+            </form>
+          </div>
+        </div>
+        <div class="column-half display-flex jc-center align-items-center padding-top-50">
           <div class="card-info-box">
             <ul id="card-label-result" class="padding-top-20 padding-bottom-20 font-comfortaa text-align-c padding-right-50">
               <!--
@@ -89,28 +98,11 @@
           </div>
         </div>
 
-        <div id="card-photo-result" class="column-half display-flex jc-center align-items-center">
+        <div id="card-photo-result" class="column-half display-flex jc-center align-items-center padding-top-50">
           <ul id="movie-title">
             <!-- <img src="/images/Princess_Mononoke.webp" class="movie-title-image search-item"> -->
           </ul>
         </div>
-
-        <div class="column-half blue-line text-align-c">
-          <div class="padding-top-50">
-            <form class="get-ghibli">
-              <label for="search-information" class="font-comfortaa">
-                <input
-                  type="text"
-                  name="search-information"
-                  id="search-information"
-                  class="search-bar search-info"
-                  placeholder="ghibli characters...">
-                <button class="search-btn">search</button>
-              </label>
-            </form>
-          </div>
-        </div>
-
 
       </div>
 

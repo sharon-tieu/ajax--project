@@ -147,7 +147,7 @@ const getGhibliCharacter = name => {
     });
 
     const userLikes = () => {
-      var dataLikes = data.likes;
+      const dataLikes = data.likes;
       if ($heart) {
         dataLikes.push(character);
       }
