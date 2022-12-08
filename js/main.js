@@ -174,8 +174,10 @@ const getGhibliCharacter = name => {
     $cardLabel.appendChild($liHairColor);
 
     // console.log('character[0].films[0]:', character[0].films[0]);
+    const targetFilm = encodeURIComponent(character.films[0]);
     const xhr2 = new XMLHttpRequest();
-    xhr2.open('GET', character.films[0]);
+    // xhr2.open('GET', character.films[0]);
+    xhr2.open('GET', 'https://lfz-cors.herokuapp.com/?url=' + targetFilm);
     xhr2.responseType = 'json';
     xhr2.addEventListener('load', () => {
       // console.log('xhr2.response.image: ', xhr2.response.image);
@@ -188,7 +190,9 @@ const getGhibliCharacter = name => {
     $ulMovieTitle.textContent = '';
 
     const xhr3 = new XMLHttpRequest();
-    xhr3.open('GET', character.species);
+    const targetSpecies = encodeURIComponent(character.species);
+    // xhr3.open('GET', character.species);
+    xhr3.open('GET', 'https://lfz-cors.herokuapp.com/?url=' + targetSpecies);
     xhr3.responseType = 'json';
     xhr3.addEventListener('load', () => {
       // console.log('xhr3.response:', xhr3.response);
@@ -208,7 +212,8 @@ const getGhibliCharacter = name => {
 // ====== SEARCH BUTTON ====== //
 const $searchButton = document.querySelector('.search-btn');
 const $searchInfo = document.querySelector('.search-info');
-$searchButton.addEventListener('click', () => {
+$searchButton.addEventListener('click', event => {
+  event.preventDefault();
   getGhibliCharacter($searchInfo.value);
 });
 
