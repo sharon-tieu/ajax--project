@@ -90,14 +90,13 @@ const getGhibliCharacter = name => {
   // $ulTitle.setAttribsucute('id', name);
 
   const targetUrl = encodeURIComponent('https://ghibli-api.sharonproject.com/people/');
-  // const updateProgress = event => {
-  //   console.log(event.total);
-  //   console.log(event.loaded);
-  // };
+  const updateProgress = event => {
+    console.log(event.total);
+    console.log(event.loaded);
+  };
 
   const xhr = new XMLHttpRequest();
-
-  // xhr.addEventListener('progress', updateProgress);
+  xhr.addEventListener('progress', updateProgress);
 
   // xhr.open('GET', 'https://ghibliapi.herokuapp.com/people/');
   xhr.open('GET', 'https://lfz-cors.herokuapp.com/?url=' + targetUrl);
