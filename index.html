@@ -32,9 +32,9 @@
         <div class="column-one-third">
           <a href="#home" class="nav-bar-menu font-comfortaa font-color-wh home-nav-bar">home</a>
         </div>
-        <div class="column-one-third">
+        <!-- <div class="column-one-third">
 
-        </div>
+        </div> -->
       </div>
     </div>
   </header>
@@ -68,48 +68,48 @@
 
       <!-- data-view: SEARCH -->
       <div class="row search-page-view" data-view="search-view">
-        <div class="padding-top-50">
-          <form class="get-ghibli">
-            <label for="search-information" class="font-comfortaa">
-              <input
-                type="text"
-                name="search-information"
-                id="search-information"
-                class="search-bar search-info"
-                placeholder="ghibli characters...">
-              <button class="search-btn">search</button>
-            </label>
-          </form>
+        <div class="column-half text-align-c">
+          <div class="padding-top-50">
+            <form class="get-ghibli">
+              <label for="search-information" class="font-comfortaa">
+                <input type="text" name="search-information" id="search-information" class="search-bar search-info"
+                  placeholder="ghibli characters...">
+                <button class="search-btn">search</button>
+              </label>
+            </form>
+          </div>
         </div>
-        <div class="column-half pink-background display-flex jc-center align-items-center">
+        <div class="column-half display-flex jc-center align-items-center padding-top-50">
           <div class="card-info-box">
             <ul id="card-label-result" class="padding-top-20 padding-bottom-20 font-comfortaa text-align-c padding-right-50">
               <!--
-              <div class="row align-items-center jc-flex-end">
-                <div class="column-half">
-                  <p>name</p>
-                </div>
-                <div class="column-one-third">
-                  <i class="fa-regular fa-heart"></i>
-                  <i class="fa-solid fa-heart hidden"></i>
-                </div>
-              </div>
-              <li class="text-align-left">age</li>
-              <li class="text-align-left">gender</li> -->
+                              <div id="search-result-title" class="row align-items-center jc-flex-end">
+                                <div class="column-half">
+                                  <p>name</p>
+                                </div>
+                                <div class="column-one-third">
+                                  <i class="fa-regular fa-heart"></i>
+                                  <i class="fa-solid fa-heart hidden"></i>
+                                </div>
+                              </div>
+                              <li class="text-align-left">age</li>
+                              <li class="text-align-left">gender</li> -->
             </ul>
           </div>
         </div>
-        <div id="card-photo-result" class="column-half display-flex jc-center align-items-center">
+
+        <div id="card-photo-result" class="column-half display-flex jc-center align-items-center padding-top-50">
           <ul id="movie-title">
             <!-- <img src="/images/Princess_Mononoke.webp" class="movie-title-image search-item"> -->
           </ul>
         </div>
+
       </div>
 
       <!-- data-view: LIKES -->
       <div class="row likes-page-view hidden flex-wrap-wrap" data-view="likes-view">
         <div class="column-full margin-top-5">
-          <p class="font-comfortaa font-color-wh padding-left-20">
+          <p class="likes-list-page-heading font-comfortaa font-color-wh padding-left-20">
             likes list
           </p>
         </div>
@@ -150,11 +150,11 @@
           <div class="modal-survey text-align-c font-comfortaa">
             <img src="images/dust-sprites-tumblr-370619.png" alt="totoro" class="img-totoro">
             <p>Are you sure you want to remove this from your likes list?</p>
-            <div class="row">
-              <div class="column-half">
+            <div class="modal-button-container">
+              <div>
                 <button class="modal-cancel font-comfortaa">cancel</button>
               </div>
-              <div class="column-half">
+              <div>
                 <button class="modal-remove font-comfortaa">remove</button>
               </div>
             </div>
