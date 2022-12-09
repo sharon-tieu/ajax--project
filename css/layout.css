@@ -81,6 +81,7 @@
     justify-content: space-around;
     font-size: 30px;
     padding: 10px;
+    width: 600px !important;
   }
 
   p {
@@ -139,5 +140,41 @@
 
   .column-full {
     width: 200%;
+  }
+
+  .search-info {
+    font-size: 30px;
+  }
+
+  #search-result-title {
+    flex-direction: row;
+  }
+
+  .search-item,
+  .likes-details {
+    margin-left: 60px;
+    margin-top: 10px;
+  }
+
+  .likes-data {
+    font-size: 33px;
+  }
+
+  .likes-details {
+    font-size: 30px;
+  }
+
+  .likes-list-page-heading {
+    font-size: 30px;
+  }
+
+  .modal-survey {
+    width: 400px;
+    position: absolute;
+    top: 20%;
+  }
+
+  .modal-button-container {
+    display: flex;
   }
 }

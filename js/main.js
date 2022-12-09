@@ -104,6 +104,7 @@ const getGhibliCharacter = name => {
     // console.log('character object:', character);
 
     const $parentDiv = document.createElement('div');
+    $parentDiv.setAttribute('id', 'search-result-title');
     $parentDiv.setAttribute('class', 'row align-items-center jc-flex-end');
     $cardLabel.appendChild($parentDiv);
 
@@ -235,11 +236,11 @@ const $viewLikesList = document.querySelector('.view-likes-list');
 const showLikeEntry = likesEntry => {
 
   const $divParentLayout = document.createElement('div');
-  $divParentLayout.setAttribute('class', 'column-one-third display-flex jc-center align-items-center padding-top-10 padding-bottom-10');
+  $divParentLayout.setAttribute('class', 'display-flex jc-center align-items-center padding-top-10 padding-bottom-10');
   $viewLikesList.appendChild($divParentLayout);
 
   const $cardBox = document.createElement('div');
-  $cardBox.setAttribute('class', 'card-home-box');
+  $cardBox.setAttribute('class', 'card-likes-box');
   $divParentLayout.appendChild($cardBox);
 
   const $contentParentDiv = document.createElement('div');
@@ -299,23 +300,23 @@ const showLikeEntry = likesEntry => {
   $cardBox.appendChild($ulData);
 
   const $liAge = document.createElement('li');
-  $liAge.setAttribute('class', 'font-comfortaa');
+  $liAge.setAttribute('class', 'font-comfortaa likes-details');
   $liAge.textContent = 'Age: ' + likesEntry.age;
   $ulData.appendChild($liAge);
 
   const $liGender = document.createElement('li');
   $liGender.textContent = 'Gender: ' + likesEntry.gender;
-  $liGender.setAttribute('class', 'font-comfortaa');
+  $liGender.setAttribute('class', 'font-comfortaa likes-details');
   $ulData.appendChild($liGender);
 
   const $liEyeColor = document.createElement('li');
   $liEyeColor.textContent = 'Eye Color: ' + likesEntry.eye_color;
-  $liEyeColor.setAttribute('class', 'font-comfortaa');
+  $liEyeColor.setAttribute('class', 'font-comfortaa likes-details');
   $ulData.appendChild($liEyeColor);
 
   const $liHairColor = document.createElement('li');
   $liHairColor.textContent = 'Hair Color: ' + likesEntry.hair_color;
-  $liHairColor.setAttribute('class', 'font-comfortaa');
+  $liHairColor.setAttribute('class', 'font-comfortaa likes-details');
   $ulData.appendChild($liHairColor);
 
   const likesSpecies = new XMLHttpRequest();
@@ -324,7 +325,7 @@ const showLikeEntry = likesEntry => {
   likesSpecies.addEventListener('load', function () {
     const $liSpecies = document.createElement('li');
     $liSpecies.textContent = 'Species: ' + likesSpecies.response.name;
-    $liSpecies.setAttribute('class', 'font-comfortaa');
+    $liSpecies.setAttribute('class', 'font-comfortaa likes-details');
     $ulData.appendChild($liSpecies);
   });
 
