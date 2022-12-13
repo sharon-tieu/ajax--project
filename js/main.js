@@ -78,8 +78,18 @@ const $getGhibli = document.querySelector('.get-ghibli');
 const $cardLabel = document.querySelector('#card-label-result');
 const $ulMovieTitle = document.querySelector('#movie-title');
 const $ulElements = document.querySelector('ul');
+const $loadingSpinner = document.querySelector('.lds-spinner');
+
+const displayLoading = () => {
+
+  $loadingSpinner.classList.remove('hidden');
+  setTimeout(() => {
+    $loadingSpinner.classList.add('hidden');
+  }, 1000);
+};
 
 const getGhibliCharacter = name => {
+  displayLoading();
 
   const $ulTitle = document.createElement('p');
   const $liAge = document.createElement('li');
@@ -90,13 +100,13 @@ const getGhibliCharacter = name => {
   // $ulTitle.setAttribsucute('id', name);
 
   const targetUrl = encodeURIComponent('https://ghibli-api.sharonproject.com/people/');
-  const updateProgress = event => {
-    console.log(event.total);
-    console.log(event.loaded);
-  };
+  // const updateProgress = event => {
+  //   console.log('event.total:', event.total);
+  //   console.log('event.loaded:', event.loaded);
+  // };
 
   const xhr = new XMLHttpRequest();
-  xhr.addEventListener('progress', updateProgress);
+  // xhr.addEventListener('progress', updateProgress);
 
   // xhr.open('GET', 'https://ghibliapi.herokuapp.com/people/');
   xhr.open('GET', 'https://lfz-cors.herokuapp.com/?url=' + targetUrl);
