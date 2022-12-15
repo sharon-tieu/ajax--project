@@ -85,19 +85,18 @@ const displayLoading = () => {
   $loadingSpinner.classList.remove('hidden');
   setTimeout(() => {
     $loadingSpinner.classList.add('hidden');
-  }, 1000);
+  }, 300);
 };
 
 const getGhibliCharacter = name => {
   displayLoading();
+  console.log('character.name:', name);
 
   const $ulTitle = document.createElement('p');
   const $liAge = document.createElement('li');
   const $liGender = document.createElement('li');
   const $liEyeColor = document.createElement('li');
   const $liHairColor = document.createElement('li');
-
-  // $ulTitle.setAttribsucute('id', name);
 
   const targetUrl = encodeURIComponent('https://ghibli-api.sharonproject.com/people/');
   // const updateProgress = event => {
@@ -109,16 +108,35 @@ const getGhibliCharacter = name => {
   // xhr.addEventListener('progress', updateProgress);
 
   // xhr.open('GET', 'https://ghibliapi.herokuapp.com/people/');
-  xhr.open('GET', 'https://lfz-cors.herokuapp.com/?url=' + targetUrl);
-  xhr.responseType = 'json';
-  xhr.addEventListener('load', function () {
-    // console.log('xhr status:', xhr.status);
-    // console.log('xhr response:', xhr.response);
+  xhr.open(
+    'GET',
+    'https://lfz-cors.herokuapp.com/?url=' + targetUrl
+  );
 
+  xhr.responseType = 'json';
+
+  xhr.addEventListener('load', function () {
     const character = xhr.response.find(el => {
       return el.name === name;
     });
-    // console.log('character object:', character);
+
+    if (character === undefined) {
+      console.log('Sorry! This character is not currently found in the server.');
+      const $parentDiv = document.createElement('div');
+      $parentDiv.setAttribute('id', 'error-message');
+      $parentDiv.setAttribute('class', 'row jc-center');
+      $cardLabel.appendChild($parentDiv);
+      $parentDiv.textContent = 'Sorry. Could not find that name in the server.';
+
+      const $image = document.createElement('img');
+      $image.preventDefault();
+      // $image.setAttribute('src', null);
+      // $image.setAttribute('class', 'movie-title-image search-item');
+      // $ulMovieTitle.appendChild($image);
+    }
+    console.log('xhr.status:', xhr.status);
+    console.log('xhr.response:', xhr.response);
+    console.log('character object:', character);
 
     const $parentDiv = document.createElement('div');
     $parentDiv.setAttribute('id', 'search-result-title');

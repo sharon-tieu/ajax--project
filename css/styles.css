@@ -19,6 +19,13 @@ a {
 .img-background {
   background-image: url("/images/ajax-background.png");
   background-size: cover;
+
+  /* background-color: #67747c;
+  background-image:
+    radial-gradient(at 38% 30%, hsla(285deg, 29%, 88%, 1) 0, transparent 50%),
+    radial-gradient(at 23% 63%, hsla(199deg, 37%, 56%, 1) 0, transparent 50%),
+    radial-gradient(at 68% 59%, hsla(120deg, 14%, 87%, 1) 0, transparent 50%),
+    radial-gradient(at 81% 57%, hsla(164deg, 42%, 28%, 1) 0, transparent 50%); */
 }
 
 .overlay {
@@ -359,16 +366,11 @@ h4:hover {
 
 /* SPINNER */
 .lds-spinner {
-  /* border: 2px solid red; */
   color: official;
   display: inline-block;
   position: relative;
   width: 80px;
   height: 80px;
-}
-
-.lds-spinner:hover {
-  cursor: pointer;
 }
 
 .lds-spinner div {
@@ -385,7 +387,7 @@ h4:hover {
   width: 6px;
   height: 18px;
   border-radius: 20%;
-  background: #fcf;
+  background: #cef;
 }
 
 .lds-spinner div:nth-child(1) {
