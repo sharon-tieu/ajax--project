@@ -90,7 +90,7 @@ const displayLoading = () => {
 
 const getGhibliCharacter = name => {
   displayLoading();
-  console.log('character.name:', name);
+  // console.log('name:', name);
 
   const $ulTitle = document.createElement('p');
   const $liAge = document.createElement('li');
@@ -121,18 +121,11 @@ const getGhibliCharacter = name => {
     });
 
     if (character === undefined) {
-      console.log('Sorry! This character is not currently found in the server.');
       const $parentDiv = document.createElement('div');
       $parentDiv.setAttribute('id', 'error-message');
       $parentDiv.setAttribute('class', 'row jc-center');
       $cardLabel.appendChild($parentDiv);
-      $parentDiv.textContent = 'Sorry. Could not find that name in the server.';
-
-      const $image = document.createElement('img');
-      $image.preventDefault();
-      // $image.setAttribute('src', null);
-      // $image.setAttribute('class', 'movie-title-image search-item');
-      // $ulMovieTitle.appendChild($image);
+      $parentDiv.textContent = `Sorry. Could not find "${name}" in the server.`;
     }
     console.log('xhr.status:', xhr.status);
     console.log('xhr.response:', xhr.response);
@@ -251,6 +244,9 @@ const $searchInfo = document.querySelector('.search-info');
 $searchButton.addEventListener('click', event => {
   event.preventDefault();
   getGhibliCharacter($searchInfo.value);
+
+  const movieTitlePhoto = document.querySelector('.movie-title-image');
+  movieTitlePhoto.remove();
 });
 
 const $noLikesView = document.querySelector('.no-likes-view');
