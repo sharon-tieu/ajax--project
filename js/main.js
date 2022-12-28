@@ -96,8 +96,6 @@ const displayLoading = () => {
 
 const getGhibliCharacter = name => {
   displayLoading();
-  console.log('name:', name);
-  console.log('name[0]:', name[0]);
 
   const $ulTitle = document.createElement('p');
   const $liAge = document.createElement('li');
@@ -106,14 +104,9 @@ const getGhibliCharacter = name => {
   const $liHairColor = document.createElement('li');
 
   const targetUrl = encodeURIComponent('https://ghibli-api.sharonproject.com/people/');
-  // const updateProgress = event => {
-  //   console.log('event.total:', event.total);
-  //   console.log('event.loaded:', event.loaded);
-  // };
 
   const xhr = new XMLHttpRequest();
-  // xhr.addEventListener('progress', updateProgress);
-  // xhr.open('GET', 'https://ghibliapi.herokuapp.com/people/');
+
   xhr.open(
     'GET',
     'https://lfz-cors.herokuapp.com/?url=' + targetUrl
@@ -122,7 +115,6 @@ const getGhibliCharacter = name => {
   xhr.responseType = 'json';
 
   xhr.addEventListener('load', function () {
-    // debugger;
     const character = xhr.response.find(el => {
       return el.name.toLowerCase() === name.toLowerCase();
     });
@@ -130,7 +122,6 @@ const getGhibliCharacter = name => {
     for (let i = 0; i < xhr.response.length; i++) {
       const charName = {};
       charName.name = xhr.response[i].name;
-      // console.log('CURRENTCHAR:', charName);
     }
 
     if (character === undefined) {
@@ -140,9 +131,6 @@ const getGhibliCharacter = name => {
       $cardLabel.appendChild($parentDiv);
       $parentDiv.textContent = `Sorry. Studio Ghibli API left out some data. Could not find "${name}" in the server. Please try again.`;
     }
-    // console.log('xhr.status:', xhr.status);
-    // console.log('xhr.response:', xhr.response);
-    // console.log('character object:', character);
 
     const $parentDiv = document.createElement('div');
     $parentDiv.setAttribute('id', 'search-result-title');
@@ -153,7 +141,6 @@ const getGhibliCharacter = name => {
     $colDiv.setAttribute('class', 'column-half');
     $parentDiv.appendChild($colDiv);
 
-    // var $ulTitle = document.createElement('ul');
     $ulTitle.textContent = character.name;
     $ulTitle.setAttribute('class', 'font-comfortaa search-item text-align-center');
     $colDiv.appendChild($ulTitle);
@@ -172,18 +159,13 @@ const getGhibliCharacter = name => {
 
     $heart = document.querySelector('.fa-regular');
     $heart.addEventListener('click', () => {
-      // console.log('liked !');
       $heart.classList.add('hidden');
       $unHeart.classList.remove('hidden');
       userLikes();
-      // var dataLikes = data.likes;
-      // dataLikes.likesId = 0;
-      // data.likesId++;
     });
 
     $unHeart = document.querySelector('.fa-solid');
     $unHeart.addEventListener('click', () => {
-      // console.log('unliked !');
       $heart.classList.remove('hidden');
       $unHeart.classList.add('hidden');
     });
@@ -195,34 +177,27 @@ const getGhibliCharacter = name => {
       }
     };
 
-    // var $liAge = document.createElement('li');
     $liAge.textContent = 'Age: ' + character.age;
     $liAge.setAttribute('class', 'font-comfortaa search-item text-align-left');
     $cardLabel.appendChild($liAge);
 
-    // var $liGender = document.createElement('li');
     $liGender.textContent = 'Gender: ' + character.gender;
     $liGender.setAttribute('class', 'font-comfortaa search-item text-align-left');
     $cardLabel.appendChild($liGender);
 
-    // var $liEyeColor = document.createElement('li');
     $liEyeColor.textContent = 'Eye Color: ' + character.eye_color;
     $liEyeColor.setAttribute('class', 'font-comfortaa search-item text-align-left');
     $cardLabel.appendChild($liEyeColor);
 
-    // var $liHairColor = document.createElement('li');
     $liHairColor.textContent = 'Hair Color: ' + character.hair_color;
     $liHairColor.setAttribute('class', 'font-comfortaa search-item text-align-left');
     $cardLabel.appendChild($liHairColor);
 
-    // console.log('character[0].films[0]:', character[0].films[0]);
     const targetFilm = encodeURIComponent(character.films[0]);
     const xhr2 = new XMLHttpRequest();
-    // xhr2.open('GET', character.films[0]);
     xhr2.open('GET', 'https://lfz-cors.herokuapp.com/?url=' + targetFilm);
     xhr2.responseType = 'json';
     xhr2.addEventListener('load', () => {
-      // console.log('xhr2.response.image: ', xhr2.response.image);
       const $image = document.createElement('img');
       $image.setAttribute('src', xhr2.response.image);
       $image.setAttribute('class', 'movie-title-image search-item');
@@ -233,11 +208,9 @@ const getGhibliCharacter = name => {
 
     const xhr3 = new XMLHttpRequest();
     const targetSpecies = encodeURIComponent(character.species);
-    // xhr3.open('GET', character.species);
     xhr3.open('GET', 'https://lfz-cors.herokuapp.com/?url=' + targetSpecies);
     xhr3.responseType = 'json';
     xhr3.addEventListener('load', () => {
-      // console.log('xhr3.response:', xhr3.response);
       const $liSpecies = document.createElement('li');
       $liSpecies.textContent = 'Species: ' + xhr3.response.name;
       $liSpecies.setAttribute('class', 'font-comfortaa search-item text-align-left');
@@ -249,9 +222,7 @@ const getGhibliCharacter = name => {
   $getGhibli.reset();
   $ulElements.textContent = '';
 };
-// getGhibliCharacter();
 
-// ====== SEARCH BUTTON ====== //
 const $searchButton = document.querySelector('.search-btn');
 const $searchInfo = document.querySelector('.search-info');
 $searchButton.addEventListener('click', event => {
@@ -273,7 +244,6 @@ const noLikesView = () => {
   }
 };
 
-// LIKES LIST
 const $viewLikesList = document.querySelector('.view-likes-list');
 
 const showLikeEntry = likesEntry => {
@@ -312,7 +282,6 @@ const showLikeEntry = likesEntry => {
     const $removeButton = document.querySelector('.modal-remove');
 
     $removeButton.addEventListener('click', () => {
-      // debugger;
       $modalContainer.classList.add('hidden');
       for (var i = 0; i < data.likes.length; i++) {
         if ($heart.id === data.likes[i].id) {
@@ -326,17 +295,6 @@ const showLikeEntry = likesEntry => {
       window.location.reload();
     });
   });
-
-  // var $taskList = document.querySelector('.task-list');
-  // $taskList.addEventListener('click', function (event) {
-  //   console.log('event.target:', event.target);
-  //   console.log('event.target.tagName:', event.target.tagName);
-  //   if (event.target.tagName === 'BUTTON') {
-  //     var ancestorElement = event.target.closest('.task-list-item');
-  //     console.log("event.target.closest('.task-list-item):", ancestorElement);
-  //     ancestorElement.remove();
-  //   }
-  // });
 
   const $ulData = document.createElement('ul');
   $ulData.setAttribute('class', 'text-align-left padding-top-10');
