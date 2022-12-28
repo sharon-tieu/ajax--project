@@ -78,8 +78,26 @@ const $getGhibli = document.querySelector('.get-ghibli');
 const $cardLabel = document.querySelector('#card-label-result');
 const $ulMovieTitle = document.querySelector('#movie-title');
 const $ulElements = document.querySelector('ul');
+const $loadingSpinner = document.querySelector('.lds-spinner');
+const $loadingMessage = document.querySelector('.loading-message');
+
+const displayLoading = () => {
+  $loadingSpinner.classList.remove('hidden');
+  $loadingMessage.classList.remove('hidden');
+  setTimeout(() => {
+    $loadingSpinner.classList.add('hidden');
+    $loadingMessage.classList.add('hidden');
+  }, 300);
+};
+
+// const upperCaseSearch = name => {
+//   name[0].toUpperCase() + name.slice(1);
+// };
 
 const getGhibliCharacter = name => {
+  displayLoading();
+  console.log('name:', name);
+  console.log('name[0]:', name[0]);
 
   const $ulTitle = document.createElement('p');
   const $liAge = document.createElement('li');
@@ -87,28 +105,43 @@ const getGhibliCharacter = name => {
   const $liEyeColor = document.createElement('li');
   const $liHairColor = document.createElement('li');
 
-  // $ulTitle.setAttribsucute('id', name);
-
   const targetUrl = encodeURIComponent('https://ghibli-api.sharonproject.com/people/');
   // const updateProgress = event => {
-  //   console.log(event.total);
-  //   console.log(event.loaded);
+  //   console.log('event.total:', event.total);
+  //   console.log('event.loaded:', event.loaded);
   // };
 
   const xhr = new XMLHttpRequest();
-
   // xhr.addEventListener('progress', updateProgress);
-
   // xhr.open('GET', 'https://ghibliapi.herokuapp.com/people/');
-  xhr.open('GET', 'https://lfz-cors.herokuapp.com/?url=' + targetUrl);
-  xhr.responseType = 'json';
-  xhr.addEventListener('load', function () {
-    // console.log('xhr status:', xhr.status);
-    // console.log('xhr response:', xhr.response);
+  xhr.open(
+    'GET',
+    'https://lfz-cors.herokuapp.com/?url=' + targetUrl
+  );
 
+  xhr.responseType = 'json';
+
+  xhr.addEventListener('load', function () {
+    // debugger;
     const character = xhr.response.find(el => {
-      return el.name === name;
+      return el.name.toLowerCase() === name.toLowerCase();
     });
+
+    for (let i = 0; i < xhr.response.length; i++) {
+      const charName = {};
+      charName.name = xhr.response[i].name;
+      // console.log('CURRENTCHAR:', charName);
+    }
+
+    if (character === undefined) {
+      const $parentDiv = document.createElement('div');
+      $parentDiv.setAttribute('id', 'error-message');
+      $parentDiv.setAttribute('class', 'row jc-center');
+      $cardLabel.appendChild($parentDiv);
+      $parentDiv.textContent = `Sorry. Studio Ghibli API left out some data. Could not find "${name}" in the server. Please try again.`;
+    }
+    // console.log('xhr.status:', xhr.status);
+    // console.log('xhr.response:', xhr.response);
     // console.log('character object:', character);
 
     const $parentDiv = document.createElement('div');
@@ -224,6 +257,8 @@ const $searchInfo = document.querySelector('.search-info');
 $searchButton.addEventListener('click', event => {
   event.preventDefault();
   getGhibliCharacter($searchInfo.value);
+  const movieTitlePhoto = document.querySelector('.movie-title-image');
+  movieTitlePhoto.remove();
 });
 
 const $noLikesView = document.querySelector('.no-likes-view');

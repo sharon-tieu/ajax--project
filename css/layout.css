@@ -142,6 +142,10 @@
     width: 200%;
   }
 
+  .lds-spinner {
+    text-align: center;
+  }
+
   .search-info {
     font-size: 30px;
   }

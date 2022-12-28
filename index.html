@@ -16,6 +16,7 @@
     crossorigin="anonymous" referrerpolicy="no-referrer" />
 </head>
 <body class="img-background">
+
   <header>
     <div class="row">
       <div class="column-half padding-bottom-20 display-flex align-items-flex-end padding-left-50 pink-background-nav-bar">
@@ -68,6 +69,7 @@
 
       <!-- data-view: SEARCH -->
       <div class="row search-page-view" data-view="search-view">
+
         <div class="column-half text-align-c">
           <div class="padding-top-50">
             <form class="get-ghibli">
@@ -82,6 +84,7 @@
         <div class="column-half display-flex jc-center align-items-center padding-top-50">
           <div class="card-info-box">
             <ul id="card-label-result" class="padding-top-20 padding-bottom-20 font-comfortaa text-align-c padding-right-50">
+              <!-- <div id="error-message" class="row jc-center">Sorry</div> -->
               <!--
                               <div id="search-result-title" class="row align-items-center jc-flex-end">
                                 <div class="column-half">
@@ -95,6 +98,25 @@
                               <li class="text-align-left">age</li>
                               <li class="text-align-left">gender</li> -->
             </ul>
+            <div class="row jc-center">
+              <div class="lds-spinner hidden">
+                <div></div>
+                <div></div>
+                <div></div>
+                <div></div>
+                <div></div>
+                <div></div>
+                <div></div>
+                <div></div>
+                <div></div>
+                <div></div>
+                <div></div>
+                <div></div>
+              </div>
+            </div>
+            <div class="loading-message row jc-center hidden">
+              <p class="jc-center font-comfortaa">loading data...</p>
+            </div>
           </div>
         </div>
 
