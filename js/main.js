@@ -7,7 +7,6 @@ const $likesView = document.querySelector('.likes-page-view');
 const $pageTitle = document.querySelector('.page-title');
 const $imgChick = document.querySelector('.img-chick');
 
-// ====== VIEW SWAPPING ====== //
 const viewSwap = view => {
   if (data.view === 'home-view') {
     data.view = 'home-view';
@@ -47,11 +46,6 @@ $homeNavBar.addEventListener('click', () => {
 
 $likesNavBar.addEventListener('click', () => {
   data.view = 'likes-view';
-  // if (data.likes.length > 0) {
-  //   viewLikesList();
-  // } else {
-  //   noLikesView();
-  // }
   viewSwap();
 });
 
@@ -61,11 +55,9 @@ $imgChick.addEventListener('click', () => {
 });
 
 window.addEventListener('DOMContentLoaded', event => {
-  // var $viewLikes = document.querySelector('.view-likes-list');
   if (data.likes.length > 0) {
     for (var i = 0; i < data.likes.length; i++) {
       showLikeEntry(data.likes[i]);
-      // $viewLikes.append(showLikes);
     }
   } else {
     noLikesView();
@@ -73,7 +65,6 @@ window.addEventListener('DOMContentLoaded', event => {
   viewSwap();
 });
 
-// ====== HTTP REQUEST FUNCTION ====== //
 const $getGhibli = document.querySelector('.get-ghibli');
 const $cardLabel = document.querySelector('#card-label-result');
 const $ulMovieTitle = document.querySelector('#movie-title');
@@ -89,10 +80,6 @@ const displayLoading = () => {
     $loadingMessage.classList.add('hidden');
   }, 300);
 };
-
-// const upperCaseSearch = name => {
-//   name[0].toUpperCase() + name.slice(1);
-// };
 
 const getGhibliCharacter = name => {
   displayLoading();
